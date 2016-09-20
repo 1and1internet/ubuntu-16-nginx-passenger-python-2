@@ -16,11 +16,15 @@ RUN \
 		python --version && \
 		pip --version && \
 		pip install --no-cache-dir --upgrade pip && \
-		pip install --no-cache-dir mysqlclient \
+		pip install --no-cache-dir mysqlclient && \
+		pip install --no-cache-dir flask \
 	" && \
+	chmod -R 777 $VIRTENV && \
 	echo "passenger_python ${VIRTENV}/bin/python;" >> /etc/nginx/passenger.conf && \
 	/usr/bin/passenger-config validate-install  --auto --no-colors && \
   apt-get -y clean && \
   rm -rf /var/lib/apt/lists/*
+
+COPY src /var/www/
 EXPOSE 8080 8443
 WORKDIR /var/www
