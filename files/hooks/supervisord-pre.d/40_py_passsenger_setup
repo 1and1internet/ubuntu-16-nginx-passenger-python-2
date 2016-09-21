@@ -11,7 +11,7 @@ if [ $EMPTY == 'true' ]; then
             VIRTENV=/var/www/._venv
             PATH=$VIRTENV/bin:$PATH
 
-            /usr/bin/pyvenv ${VIRTENV}
+            virtualenv -p /usr/bin/python2.7 $VIRTENV
             source ${VIRTENV}/bin/activate
             python --version
             PIP=$(which pip)
