@@ -20,12 +20,10 @@ build:
     commands:
       - export IMAGE=dronejob$CI_JOB_ID/${CI_REPO#*/}
       - echo $IMAGE
-      - pushd ..
-      - git clone https://github.com/1and1internet/drone-tests.git
-      - pushd drone-tests
+      - git clone https://github.com/1and1internet/drone-tests.git ../drone-tests
+      - cd ../drone-tests
       - git branch -r | grep develop > /dev/null && git checkout develop
-      - popd
-      - popd
+      - cd -
       - rspec -f documentation spec/spec_helper.rb
   publish:
     when:
