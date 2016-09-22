@@ -7,7 +7,7 @@ ENV VIRTUAL_ENV_DISABLE_PROMPT true
 ENV PATH $VIRTENV/bin:$PATH
 
 COPY src /usr/src
-COPY files /
+#COPY files /
 
 RUN \
 	apt-get update -q && \
