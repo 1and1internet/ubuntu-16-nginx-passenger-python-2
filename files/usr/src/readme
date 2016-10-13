@@ -12,3 +12,8 @@ import sys
 sys.path.insert(1,'/var/www/mysite')
 import mysite.wsgi
 application = mysite.wsgi.application
+
+Restart passenger:
+
+/var/www $ mkdir tmp
+/var/www $ touch tmp/restart.txt
