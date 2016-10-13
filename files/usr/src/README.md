@@ -15,5 +15,4 @@ application = mysite.wsgi.application
 
 Restart passenger:
 
-/var/www $ mkdir tmp
-/var/www $ touch tmp/restart.txt
+/var/www $ mkdir -p tmp && touch tmp/restart.txt
