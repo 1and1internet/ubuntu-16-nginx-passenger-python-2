@@ -2,7 +2,7 @@
 
 set -e
 
-EMPTY=$([ $(ls -a /var/www | grep -v "._venv" | wc -l) -eq 2 ] && echo 'true' || echo 'false')
+EMPTY=$([ $(ls -A /var/www | egrep -v "._venv|bashrc" | wc -l) -eq 0 ] && echo 'true' || echo 'false')
 
 if [ $EMPTY == 'true' ]; then
     VIRTENV=/var/www/._venv
