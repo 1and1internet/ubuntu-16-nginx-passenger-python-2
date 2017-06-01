@@ -13,8 +13,7 @@ if [ $EMPTY == 'true' ]; then
     python --version
     pip --version
     pip install --no-cache-dir --upgrade pip
-    pip install --no-cache-dir mysqlclient
-    pip install --no-cache-dir flask
+    pip install --no-cache-dir six mysqlclient flask
     mkdir public
     cp -r /usr/src/* /var/www
 fi
