@@ -11,7 +11,8 @@ COPY files /
 RUN \
 	apt-get update -q && \
 	apt-get install -q -o Dpkg::Options::=--force-confdef -y virtualenv python-dev python-pip && \
-	pip install requests logging && \
+	pip install --no-cache-dir --upgrade pip && \
+	pip install --no-cache-dir --upgrade requests logging && \
 	echo "passenger_python ${VIRTENV}/bin/python;" >> /etc/nginx/passenger.conf && \
 	/usr/bin/passenger-config validate-install  --auto --no-colors && \
 	apt-get -y clean && \
