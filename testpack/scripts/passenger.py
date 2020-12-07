@@ -8,7 +8,7 @@ import time
 class Test1and1Image(Test1and1Common):
     def file_mode_test(self, filename: str, mode: str):
         # Compare (eg) drwx???rw- to drwxr-xrw-
-        result = self.execRun("ls -ld %s" % filename)
+        result = self.exec("ls -ld %s" % filename)
         self.assertFalse(
             result.find("No such file or directory") > -1,
             msg="%s is missing" % filename
@@ -20,7 +20,7 @@ class Test1and1Image(Test1and1Common):
             )
 
     def file_content_test(self, filename: str, content: list):
-        result = self.execRun("cat %s" % filename)
+        result = self.exec("cat %s" % filename)
         self.assertFalse(
             result.find("No such file or directory") > -1,
             msg="%s is missing" % filename
@@ -72,7 +72,7 @@ class Test1and1Image(Test1and1Common):
         self.file_mode_test("/var/lib/nginx", "drwxrwxrwx")
 
     def test_apt_lists_empty(self):
-        self.assertEqual("total 0\n", self.execRun("ls -l /var/lib/apt/lists/"))
+        self.assertEqual("total 0\n", self.exec("ls -l /var/lib/apt/lists/"))
 
     def test_default_listen(self):
         self.file_content_test(
@@ -90,7 +90,7 @@ class Test1and1Image(Test1and1Common):
         self.assertPackageIsInstalled("nginx-common")
 
     def test_passenger_version(self):
-        version = self.execRun("passenger --version")
+        version = self.exec("passenger --version")
         self.assertEqual("Phusion Passenger 6", version[:19])
 
     def test_docker_logs(self):
@@ -99,7 +99,7 @@ class Test1and1Image(Test1and1Common):
             "Executing hook /hooks/supervisord-pre.d/00_no_root.sh",
             "Executing hook /hooks/supervisord-pre.d/20_configurability",
         ]
-        container_logs = self.container.logs().decode('utf-8')
+        container_logs = self.logs()
         for expected_log_line in expected_log_lines:
             self.assertTrue(
                 container_logs.find(expected_log_line) > -1,
